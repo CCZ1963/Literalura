@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/libros_db
+    username: ccz
+    password: DosfrentesMario
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
