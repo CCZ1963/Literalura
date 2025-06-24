@@ -52,13 +52,38 @@ public class CatalogoService {
         libro.setAutor(autor);
         libroRepo.save(libro);
 
+        System.out.println("""
+            ****** LIBRO ******
+            Título: %s
+            Autor: %s
+            Idioma: %s
+            Número de descargas: %d
+            *********************
+            """.formatted(
+                            libro.getTitulo(),
+                            autor.getNombre(),
+                            libroJson.get("languages").get(0).asText(),
+                            libroJson.get("download_count").asInt(0)
+        ));
+
         System.out.println("Libro guardado correctamente.");
     }
 
     public void listarLibros() {
         libroRepo.findAll().forEach(libro -> {
-            System.out.println(libro.getTitulo() + " - " + libro.getIdioma() + " - " + libro.getAutor().getNombre());
-        });
+            System.out.println("""
+            ****** LIBRO ******
+            Título: %s
+            Autor: %s
+            Idioma: %s
+            Número de descargas: (no disponible)
+            *********************
+            """.formatted(
+                                libro.getTitulo(),
+                                libro.getAutor().getNombre(),
+                                libro.getIdioma()
+                        ));
+                    });
     }
 
     public void listarAutores() {
