@@ -2,6 +2,7 @@ package com.ejemplo.catalogo.model;
 
 import jakarta.persistence.*;
 import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 public class Autor {
@@ -14,8 +15,8 @@ public class Autor {
     private Integer nacimiento;
     private Integer fallecimiento;
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
-    private Set<Libro> libros;
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Libro> libros = new HashSet<>();
 
     public Autor() {}
 
