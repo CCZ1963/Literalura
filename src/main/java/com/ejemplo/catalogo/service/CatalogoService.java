@@ -49,6 +49,7 @@ public class CatalogoService {
         Libro libro = new Libro();
         libro.setTitulo(libroJson.get("title").asText());
         libro.setIdioma(libroJson.get("languages").get(0).asText());
+        libro.setNumeroDescargas(libroJson.get("download_count").asInt());
         libro.setAutor(autor);
         libroRepo.save(libro);
 
@@ -76,12 +77,13 @@ public class CatalogoService {
             Título: %s
             Autor: %s
             Idioma: %s
-            Número de descargas: (no disponible)
+            Número de descargas: %d
             *********************
             """.formatted(
                                 libro.getTitulo(),
                                 libro.getAutor().getNombre(),
-                                libro.getIdioma()
+                                libro.getIdioma(),
+                                libro.getNumeroDescargas()
                         ));
                     });
     }
@@ -95,6 +97,7 @@ public class CatalogoService {
             }
         });
     }
+
 
     public void listarLibrosPorIdioma(String idioma) {
         libroRepo.findByIdioma(idioma).forEach(libro -> System.out.println(libro.getTitulo()));

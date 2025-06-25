@@ -48,4 +48,16 @@ public class Libro {
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
+
+    @Column(name = "numero_descargas")
+    private int numeroDescargas;
+
+    public int getNumeroDescargas() {
+        return numeroDescargas;
+    }
+
+    public void setNumeroDescargas(int numeroDescargas) {
+        this.numeroDescargas = numeroDescargas;
+    }
+
 }
